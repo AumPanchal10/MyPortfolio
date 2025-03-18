@@ -126,26 +126,6 @@ opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
 z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
-const LanguageSwitcher = () => {
-  const [language, setLanguage] = useState('en');
-  const handleLanguageChange = (lang) => {
-    setLanguage(lang);
-    // Implement actual language switching logic here (e.g., i18n library)
-  };
-
-  return (
-    <select onChange={(e) => handleLanguageChange(e.target.value)}>
-      <option value="en">English</option>
-      <option value="de">German</option>
-      <option value="fr">French</option>
-      <option value="es">Spanish</option>
-      <option value="hi">Hindi</option>
-      <option value="gu">Gujarati</option>
-      <option value="mr">Marathi</option>
-    </select>
-  );
-};
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -162,7 +142,6 @@ const Navbar = () => {
   <Nav>
     <NavbarContainer>
         <NavLogo to="/">GeeksForGeeks</NavLogo>
-        <LanguageSwitcher /> {/* Added LanguageSwitcher */}
 
         <MobileIcon onClick={() => setIsOpen(!isOpen)}>
             <MenuRounded style={{ color: "inherit" }}/>
