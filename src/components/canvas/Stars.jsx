@@ -14,6 +14,8 @@ const StyledCanvasWrapper = styled.div`
     z-index: 0;
     pointer-events: none;
     background: transparent;
+    opacity: 0.8;
+    mix-blend-mode: screen;
 `;
 
 const Stars = (props) => {

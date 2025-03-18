@@ -12,6 +12,14 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import SEO from "./components/SEO";
 
+const MainContainer = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.bg};
+`;
+
 const StarWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -19,20 +27,18 @@ const StarWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 0;
+  pointer-events: none;
 `;
 
-const Body = styled.div`
-  background-color: ${({ theme }) => theme.bg};
-  color: ${({ theme }) => theme.text_primary};
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+const ContentWrapper = styled.div`
   position: relative;
+  z-index: 1;
+  width: 100%;
+  color: ${({ theme }) => theme.text_primary};
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  z-index: 1;
   padding-bottom: 100px;
   background: linear-gradient(
       38.73deg,
@@ -53,25 +59,27 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <SEO />
       <BrowserRouter>
-        <StarWrapper>
-          <StarCanvas />
-        </StarWrapper>
-        <Navbar />
-        <Body>
-          <Hero />
-          <Wrapper>
-            <Skills />
-            <Experience />
-          </Wrapper>
-          <Wrapper>
-            <Projects />
-          </Wrapper>
-          <Wrapper>
-            <Education />
-            <Contact />
-          </Wrapper>
-          <Footer />
-        </Body>
+        <MainContainer>
+          <StarWrapper>
+            <StarCanvas />
+          </StarWrapper>
+          <ContentWrapper>
+            <Navbar />
+            <Hero />
+            <Wrapper>
+              <Skills />
+              <Experience />
+            </Wrapper>
+            <Wrapper>
+              <Projects />
+            </Wrapper>
+            <Wrapper>
+              <Education />
+              <Contact />
+            </Wrapper>
+            <Footer />
+          </ContentWrapper>
+        </MainContainer>
       </BrowserRouter>
     </ThemeProvider>
   );
