@@ -146,12 +146,10 @@ const Contact = () => {
     }
   return (
     <Container id="Education">
-      {/* StarCanvas is positioned in the background */}
-      <StarWrapper>
-        <StarCanvas />
-      </StarWrapper>
-
       <Wrapper>
+        <StarWrapper>
+            <StarCanvas />
+        </StarWrapper>
         <Title>Contact</Title>
         <Desc style={{ marginBottom: "40px", }}>
           Feel free to reach out.
