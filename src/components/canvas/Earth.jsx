@@ -1,12 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, Preload, useGLTF, Environment } from "@react-three/drei";
 
 const Earth = () => {
-  const earth = useGLTF("./planet/scene.gltf");
-  return (
-    <primitive object={earth.scene} scale={3} position-y={0} rotation={0}/>
-  );
+  const { scene } = useGLTF("/planet/scene.gltf"); // Correct path
+
+  return <primitive object={scene} scale={2.5} position-y={0} rotation={[0, Math.PI, 0]} />;
 };
 
 const EarthCanvas = () => {
@@ -24,13 +23,22 @@ const EarthCanvas = () => {
       }}
     >
       <Suspense fallback={null}>
+        {/* Realistic Lighting */}
+        <Environment preset="sunset" />
+        <directionalLight position={[2, 5, 3]} intensity={2} />
+        <ambientLight intensity={0.5} />
+
+        {/* Orbit Controls for Rotation */}
         <OrbitControls
           autoRotate
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
+
+        {/* Render Earth Model */}
         <Earth />
+
         <Preload all />
       </Suspense>
     </Canvas>

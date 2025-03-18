@@ -11,6 +11,7 @@ import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import SEO from "./components/SEO";
+import EarthCanvas from "./components/canvas/Earth";
 
 const MainContainer = styled.div`
   position: relative;
