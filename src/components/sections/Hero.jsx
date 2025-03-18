@@ -215,7 +215,6 @@ const Hero = () => {
     return <div id="about">
         <HeroContainer>
             <HeroBg>
-                <StarCanvas />
                 <HeroBgAnimation />
             </HeroBg>
 

@@ -12,16 +12,27 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import SEO from "./components/SEO";
 
+const StarWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
+
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text_primary};
   width: 100%;
-  height: 100vh; /* Change to 100vh to cover full height */
+  min-height: 100vh;
   overflow-x: hidden;
   position: relative;
 `;
 
 const Wrapper = styled.div`
+  position: relative;
+  z-index: 1;
   padding-bottom: 100px;
   background: linear-gradient(
       38.73deg,
@@ -42,24 +53,24 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <SEO />
       <BrowserRouter>
+        <StarWrapper>
+          <StarCanvas />
+        </StarWrapper>
         <Navbar />
         <Body>
-          <StarCanvas /> {/* Keep StarCanvas here for full background */}
-          <div style={{ position: 'relative', zIndex: 1 }}> {/* Wrap other components in a relative positioned div */}
-            <Hero />
-            <Wrapper>
-              <Skills />
-              <Experience />
-            </Wrapper>
-            <Wrapper>
-              <Projects />
-            </Wrapper>
-            <Wrapper>
-              <Education />
-              <Contact />
-            </Wrapper>
-            <Footer />
-          </div>
+          <Hero />
+          <Wrapper>
+            <Skills />
+            <Experience />
+          </Wrapper>
+          <Wrapper>
+            <Projects />
+          </Wrapper>
+          <Wrapper>
+            <Education />
+            <Contact />
+          </Wrapper>
+          <Footer />
         </Body>
       </BrowserRouter>
     </ThemeProvider>
