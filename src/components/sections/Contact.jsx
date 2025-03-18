@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import styled from 'styled-components';
 import StarCanvas from '../canvas/Stars';
 import emailjs from '@emailjs/browser';
+import GlowingSphere from '../canvas/GlowingSphere';
 
 // Container for the Education section
 const Container = styled.div`
@@ -150,6 +151,7 @@ const Contact = () => {
         <StarWrapper>
             <StarCanvas />
         </StarWrapper>
+        <GlowingSphere />
         <Title>Contact</Title>
         <Desc style={{ marginBottom: "40px", }}>
           Feel free to reach out.
