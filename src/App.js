@@ -10,6 +10,7 @@ import StarCanvas from "./components/canvas/Stars";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
+import SEO from "./components/SEO";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -39,6 +40,7 @@ const Wrapper = styled.div`
 function App() {
   return(
     <ThemeProvider theme={darkTheme}>
+      <SEO />
       <BrowserRouter>
         <Navbar />
         <Body>

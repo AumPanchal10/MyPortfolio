@@ -86,11 +86,7 @@ const ToggleButton = styled.div`
     padding: 6px 8px;
     border-radius: 4px;
   }
-  ${({ active, theme }) =>
-    active &&
-    `
-        background: ${theme.primary + 20};
-    `}
+  background: ${({ active, theme }) => (active ? theme.primary + 20 : 'transparent')};
 `;
 
 const Divider = styled.div`
