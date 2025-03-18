@@ -70,7 +70,7 @@ const ButtonContainer = styled.div `
     @media screen and (max-width: 768px){
         display: none;
     }
-    
+
 `
 const GithubButton = styled.a `
     border: 1px solid ${({ theme }) => theme.primary};
@@ -126,33 +126,62 @@ opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
 z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
+const LanguageSwitcher = () => {
+  const [language, setLanguage] = useState('en');
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    // Implement actual language switching logic here (e.g., i18n library)
+  };
+
+  return (
+    <select onChange={(e) => handleLanguageChange(e.target.value)}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="hi">Hindi</option>
+      <option value="gu">Gujarati</option>
+      <option value="mr">Marathi</option>
+    </select>
+  );
+};
+
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
+  const smoothScroll = (e, targetId) => {
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return ( 
   <Nav>
     <NavbarContainer>
         <NavLogo to="/">GeeksForGeeks</NavLogo>
+        <LanguageSwitcher /> {/* Added LanguageSwitcher */}
 
         <MobileIcon onClick={() => setIsOpen(!isOpen)}>
             <MenuRounded style={{ color: "inherit" }}/>
         </MobileIcon>
         <NavItems>
-            <NavLink href="#About">About</NavLink>
-            <NavLink href="#Skills">Skills</NavLink>
-            <NavLink href="#Experience">Experience</NavLink>
-            <NavLink href="#Projects">Projects</NavLink>
-            <NavLink href="#Education">Education</NavLink>
+            <NavLink href="#About" onClick={(e) => smoothScroll(e, 'About')}>About</NavLink>
+            <NavLink href="#Skills" onClick={(e) => smoothScroll(e, 'Skills')}>Skills</NavLink>
+            <NavLink href="#Experience" onClick={(e) => smoothScroll(e, 'Experience')}>Experience</NavLink>
+            <NavLink href="#Projects" onClick={(e) => smoothScroll(e, 'Projects')}>Projects</NavLink>
+            <NavLink href="#Education" onClick={(e) => smoothScroll(e, 'Education')}>Education</NavLink>
         </NavItems>
 
         {
             isOpen && <MobileMenu isOpen={isOpen}>
-                
-            <NavLink onClick= {() => setIsOpen(!isOpen)} href="#About">About</NavLink>
-            <NavLink onClick= {() => setIsOpen(!isOpen)} href="#Experience">Experience</NavLink>
-            <NavLink onClick= {() => setIsOpen(!isOpen)} href="#Skills">Skills</NavLink>
-            <NavLink onClick= {() => setIsOpen(!isOpen)} href="#Projects">Projects</NavLink>
-            <NavLink onClick= {() => setIsOpen(!isOpen)} href="#Education">Education</NavLink>
+            <NavLink onClick= {(e) => {setIsOpen(!isOpen); smoothScroll(e, 'About')}} href="#About">About</NavLink>
+            <NavLink onClick= {(e) => {setIsOpen(!isOpen); smoothScroll(e, 'Experience')}} href="#Experience">Experience</NavLink>
+            <NavLink onClick= {(e) => {setIsOpen(!isOpen); smoothScroll(e, 'Skills')}} href="#Skills">Skills</NavLink>
+            <NavLink onClick= {(e) => {setIsOpen(!isOpen); smoothScroll(e, 'Projects')}} href="#Projects">Projects</NavLink>
+            <NavLink onClick= {(e) => {setIsOpen(!isOpen); smoothScroll(e, 'Education')}} href="#Education">Education</NavLink>
             <GithubButton 
             href={Bio.github} 
             target = "_Blank" 
@@ -170,10 +199,6 @@ const Navbar = () => {
         </ButtonContainer>
     </NavbarContainer>
   </Nav>
-
-
- 
-
   );
 };
 

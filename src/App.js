@@ -64,6 +64,9 @@ function App() {
             <StarCanvas />
           </StarWrapper>
           <ContentWrapper>
+            <StarWrapper>
+              <StarCanvas />
+            </StarWrapper>
             <Navbar />
             <Hero />
             <Wrapper>
